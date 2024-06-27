@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import CreateChallenge from '../CreateChallenge.jsx/CreateChallenge';
 
 function App() {
   const dispatch = useDispatch();
@@ -109,6 +110,11 @@ function App() {
               <LandingPage />
             }
           </Route>
+
+            <Route>
+            <CreateChallenge/>
+
+            </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
