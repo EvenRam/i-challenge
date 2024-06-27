@@ -11,7 +11,7 @@ function* fetchChallenge (){
 }
 
 function* challengeSaga(){
-    yield takeLatest('fetch_challenge',fetchChallenge);
+    yield takeLatest('FETCH_CHALLENGE',fetchChallenge);
 }
 
 export default challengeSaga
