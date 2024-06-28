@@ -34,8 +34,8 @@ router.post('/', (req, res) => {
     console.log('add new challenge', newChallenge)
 
     const sqlText = `
-   INSERT INTO "challenge" ("challenge_name","challenger","measureable_goal","notes", "wager","dates")
-   VALUES ($1, $2, $3, $4, $5, $6)
+   INSERT INTO "challenge" ("challenge_name","challenger","measureable_goal","notes", "wager","dates", "user_id")
+   VALUES ($1, $2, $3, $4, $5, $6, $7);
    `;
 
    const sqValues = [
@@ -44,7 +44,9 @@ router.post('/', (req, res) => {
     Number(newChallenge.measureable_goal),
     newChallenge.notes,
     newChallenge.wager, 
-    Number(newChallenge.dates)]
+    newChallenge.dates,
+    req.user.id
+]
 
    pool.query(sqlText, sqValues)
    .then((result) => {

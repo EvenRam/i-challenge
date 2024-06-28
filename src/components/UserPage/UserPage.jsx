@@ -27,7 +27,7 @@ function UserPage() {
     //   dates: dates,
     // }
     dispatch({
-      type: 'ADD_CHALLENGE',
+      type: 'SET_CHALLENGE',
       payload: name
     })
     history.push("/createChallenge")

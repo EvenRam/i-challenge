@@ -30,12 +30,20 @@ const CreateChallenge = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch({
-            type: 'FETCH_CHALLENGE',
-            payload: name,goal,aim, wager,notes,
+            type: 'ADD_CHALLENGE',
+            payload: {
+                name: name,
+                measureable_goal: 4,
+                goal: goal,
+                challenger: "self",
+                wager: wager,
+                notes: notes,
+                dates: "[2023-01-01,2023-12-31]"
+            }
         })
         history.push('/user')
     }
-
+// Start date: January 1, 2023 // End date: December 31, 2023 ];
     return (
         <>
             <h2> New Challenge Form</h2>
@@ -86,7 +94,7 @@ const CreateChallenge = () => {
                 </div>
 
                 <button onClick={handleSubmit}
-                type="submit">Submit</button>
+                    type="submit">Submit</button>
             </form>
 
         </>

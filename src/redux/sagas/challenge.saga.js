@@ -11,14 +11,16 @@ function* fetchChallenge() {
 }
 
 function* addChallenge(action) {
+console.log("action payload for add challenge",action.payload)
     try {
         yield axios.post("/api/challenge", {
-            challenge_name: action.payload.name,
+            name: action.payload.name,
             challenger: action.payload.challenger,
-            measureable_goal: action.payload.goal,
+            measureable_goal: action.payload.measureable_goal,
+            goal: action.payload.goal,
             notes: action.payload.notes,
             wager: action.payload.wager,
-            dates: action.payload.dates,
+            dates: action.payload.dates
         });
         yield put({ type: "SET_CHALLENGE" });
     } catch (error) {
@@ -29,7 +31,7 @@ function* addChallenge(action) {
 
 function* challengeSaga() {
     yield takeLatest('FETCH_CHALLENGE', fetchChallenge);
-    // yield takeLatest('ADD_CHALLENGE', addChallenge)
+    yield takeLatest('ADD_CHALLENGE', addChallenge)
 }
 
 export default challengeSaga
