@@ -17,12 +17,21 @@ const CreateChallenge = () => {
     let [wager, setWager] = useState("")
     let [notes, setNotes] = useState("")
 
+    // console.log("What is the name of challenge",name);
+    // console.log("What is the name of goal",goal);
+    // console.log("What is the name of aim",aim);
+    // console.log("What is the name of wager",wager);
+    // console.log("What is the name of notes",notes);
+
+
+
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch({
             type: 'FETCH_CHALLENGE',
-            payload: name,goal, aim, wager,notes,
+            payload: name,goal,aim, wager,notes,
         })
         history.push('/user')
     }
@@ -31,50 +40,45 @@ const CreateChallenge = () => {
         <>
             <h2> New Challenge Form</h2>
             <form className='form' onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className="name">
                     <label htmlFor="challengeName">Challenge Name:</label>
                     <input
-                        id="challengeName"
                         type='text'
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="form-goal">
                     <label htmlFor="goal">What is your goal and why:</label>
                     <input
-                        id="goal"
                         type='text'
                         value={goal}
                         onChange={(event) => setGoal(event.target.value)}
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="aim">
                     <label htmlFor="aim">How many days do you want to work on this goal:</label>
                     <input
-                        id="aim"
                         type='number'
                         value={aim}
                         onChange={(event) => setAim(event.target.value)}
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="aim">
                     <label htmlFor="wager">Wager - Enter a reward or consequence for your challenge:</label>
                     <input
-                        id="wager"
                         type='text'
                         value={wager}
                         onChange={(event) => setWager(event.target.value)}
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="notes">
                     <label htmlFor="notes">Notes:</label>
                     <input
-                        id="notes"
                         type='text'
                         value={notes}
                         onChange={(event) => setNotes(event.target.value)}
