@@ -29,7 +29,7 @@ function* addChallenge(action) {
 
 function* challengeSaga() {
     yield takeLatest('FETCH_CHALLENGE', fetchChallenge);
-    yield takeLatest('ADD_CHALLENGE', addChallenge)
+    // yield takeLatest('ADD_CHALLENGE', addChallenge)
 }
 
 export default challengeSaga

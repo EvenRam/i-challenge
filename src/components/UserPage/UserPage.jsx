@@ -45,7 +45,7 @@ function UserPage() {
       </div>
       <div>
         <h2>Challenge List</h2>
-        <table>
+        <table >
           <thead>
             <tr>
               <th>Challenge Name</th>
