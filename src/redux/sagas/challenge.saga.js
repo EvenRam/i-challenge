@@ -13,7 +13,8 @@ function* fetchChallenge() {
 function* addChallenge(action) {
 console.log("action payload for add challenge",action.payload)
     try {
-        yield axios.post("/api/challenge", {
+        yield axios.post("/api/challenge", action.payload);
+        yield put({ type: "SET_CHALLENGE", payload: {
             name: action.payload.name,
             challenger: action.payload.challenger,
             measureable_goal: action.payload.measureable_goal,
@@ -21,8 +22,8 @@ console.log("action payload for add challenge",action.payload)
             notes: action.payload.notes,
             wager: action.payload.wager,
             dates: action.payload.dates
-        });
-        yield put({ type: "SET_CHALLENGE" });
+        }
+    });
     } catch (error) {
         console.log('error with add challenge post request', error)
     }

@@ -17,6 +17,7 @@ const CreateChallenge = () => {
     let [wager, setWager] = useState("")
     let [notes, setNotes] = useState("")
 
+
     // console.log("What is the name of challenge",name);
     // console.log("What is the name of goal",goal);
     // console.log("What is the name of aim",aim);
@@ -33,7 +34,7 @@ const CreateChallenge = () => {
             type: 'ADD_CHALLENGE',
             payload: {
                 name: name,
-                measureable_goal: 4,
+                measureable_goal: aim,
                 goal: goal,
                 challenger: "self",
                 wager: wager,
@@ -43,7 +44,7 @@ const CreateChallenge = () => {
         })
         history.push('/user')
     }
-// Start date: January 1, 2023 // End date: December 31, 2023 ];
+    // Start date: January 1, 2023 // End date: December 31, 2023 ];
     return (
         <>
             <h2> New Challenge Form</h2>

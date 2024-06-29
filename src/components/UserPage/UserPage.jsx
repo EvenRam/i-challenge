@@ -2,6 +2,8 @@ import React from 'react';
 //import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect } from 'react';
+
 
 
 function UserPage() {
@@ -14,22 +16,13 @@ function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory()
 
-
+  useEffect(() => {
+    dispatch({ type: "FETCH_CHALLENGE" })
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const challengeData = {
-    //   name: name,
-    //   challenger: challenger,
-    //   aim: aim,
-    //   wager: wager,
-    //   notes: notes,
-    //   dates: dates,
-    // }
-    dispatch({
-      type: 'SET_CHALLENGE',
-      payload: name
-    })
+
     history.push("/createChallenge")
   }
 
@@ -60,20 +53,22 @@ function UserPage() {
           </thead>
           <tbody>
 
-            {/* {challenges.map(challenge => (
-            <tr key= {challenge.id}>
-              <td>{challenge.name}</td>
-              <td>{challenge.challenger}</td>
-              <td>{challenge.goal}</td>
-              <td>{challenge.notes}</td>
-              <td>{challenge.wager}</td>
-              <td>{challenge.dates}</td>
-            </tr>
-          ))} */}
+            {challenges.map(challenge => (
+              <tr key={challenge.id}>
+                <td>{challenge.name}</td>
+                <td>{challenge.challenger}</td>
+                <td>{challenge.goal}</td>
+                <td>{challenge.notes}</td>
+                <td>{challenge.wager}</td>
+                <td>{challenge.dates}</td>
+                <td><button  type='submit'> Edit </button></td>
+                <td><button  type='submit'> Delete</button></td>
+              </tr>
+            ))}
           </tbody>
 
         </table>
-        <button onClick={handleSubmit} type='submit'> Create Challenge</button>
+        <button onClick={handleSubmit} type='button'> Create Challenge</button>
         {/* <LogOutButton className="btn" />  */}
       </div>
     </>
