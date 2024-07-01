@@ -30,9 +30,20 @@ console.log("action payload for add challenge",action.payload)
 
 }
 
+function* deleteChallenge(action){
+    try{
+        yield axios.delete(`/api/challenge/${action.payload.id}`);
+        yield put({type: 'DELETE_CHALLENGE_WORKED',payload: action.payload.id})
+    } catch (error){
+        console.log('Error with the challenge delete request', error)
+    }
+}
+
+
 function* challengeSaga() {
     yield takeLatest('FETCH_CHALLENGE', fetchChallenge);
     yield takeLatest('ADD_CHALLENGE', addChallenge)
+    yield takeLatest('DELETE_CHALLENGE', deleteChallenge)
 }
 
 export default challengeSaga

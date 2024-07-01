@@ -9,9 +9,13 @@ import { useEffect } from 'react';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  const challenges = useSelector(store => store.challengeReducer)
+  const challenge = useSelector(store => store.challengeReducer)
+  const deleteItem = useSelector((store) => store.deleteItem)
 
-  console.log("what is challenges", challenges);
+  
+console.log("delete item", deleteItem)
+
+  console.log("what is challenges", challenge);
 
   const dispatch = useDispatch();
   const history = useHistory()
@@ -20,13 +24,15 @@ function UserPage() {
     dispatch({ type: "FETCH_CHALLENGE" })
   }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleSubmit = () => {
     history.push("/createChallenge")
   }
 
-
+  const handleDelete = (challengeId)=>{
+  console.log("Delete Clicked");
+  console.log("challenge id is", challengeId)
+  dispatch({type:"DELETE_CHALLENGE",payload:challengeId})
+}
 
   return (
     <>
@@ -53,7 +59,7 @@ function UserPage() {
           </thead>
           <tbody>
 
-            {challenges.map(challenge => (
+            {challenge.map((challenge) => (
               <tr key={challenge.id}>
                 <td>{challenge.name}</td>
                 <td>{challenge.challenger}</td>
@@ -62,13 +68,18 @@ function UserPage() {
                 <td>{challenge.wager}</td>
                 <td>{challenge.dates}</td>
                 <td><button  type='submit'> Edit </button></td>
-                <td><button  type='submit'> Delete</button></td>
+                <td><button className='delete-button'
+                onClick={() =>handleDelete(challenge.id)}>
+                   Delete</button></td>
+                   {console.log("measurable.goal",challenge.goal)}
               </tr>
             ))}
           </tbody>
 
         </table>
-        <button onClick={handleSubmit} type='button'> Create Challenge</button>
+        <button className='create-button' 
+        onClick={handleSubmit} type='button'> 
+        Create Challenge</button>
         {/* <LogOutButton className="btn" />  */}
       </div>
     </>

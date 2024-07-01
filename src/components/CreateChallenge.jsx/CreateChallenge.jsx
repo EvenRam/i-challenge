@@ -27,7 +27,6 @@ const CreateChallenge = () => {
 
 
 
-
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch({
@@ -41,7 +40,9 @@ const CreateChallenge = () => {
                 notes: notes,
                 dates: "[2023-01-01,2023-12-31]"
             }
+            
         })
+
         history.push('/user')
     }
     // Start date: January 1, 2023 // End date: December 31, 2023 ];
