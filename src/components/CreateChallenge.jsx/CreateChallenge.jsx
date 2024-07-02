@@ -17,22 +17,12 @@ const CreateChallenge = () => {
     let [wager, setWager] = useState("")
     let [notes, setNotes] = useState("")
 
-
-    // console.log("What is the name of challenge",name);
-    // console.log("What is the name of goal",goal);
-    // console.log("What is the name of aim",aim);
-    // console.log("What is the name of wager",wager);
-    // console.log("What is the name of notes",notes);
-
-
-
-
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch({
             type: 'ADD_CHALLENGE',
             payload: {
-                name: name,
+                challenge_name: name,
                 measureable_goal: aim,
                 goal: goal,
                 challenger: "self",

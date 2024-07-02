@@ -9,14 +9,9 @@ import { useEffect } from 'react';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  const challenge = useSelector(store => store.challengeReducer)
-  const deleteItem = useSelector((store) => store.deleteItem)
+  const challenges = useSelector(store => store.challengeReducer)
 
   
-console.log("delete item", deleteItem)
-
-  console.log("what is challenges", challenge);
-
   const dispatch = useDispatch();
   const history = useHistory()
 
@@ -33,13 +28,11 @@ console.log("delete item", deleteItem)
   console.log("challenge id is", challengeId)
   dispatch({type:"DELETE_CHALLENGE",payload:challengeId})
 }
-
   return (
     <>
       <div className="container">
         <h2>Welcome, {user.username}!</h2>
         {/* <p>Your ID is: {user.id}</p> */}
-
         <h2> Your Current Challenges</h2>
       </div>
       <div>
@@ -58,12 +51,11 @@ console.log("delete item", deleteItem)
             </tr>
           </thead>
           <tbody>
-
-            {challenge.map((challenge) => (
+            {challenges.map((challenge) => (
               <tr key={challenge.id}>
-                <td>{challenge.name}</td>
+                <td>{challenge.challenge_name}</td>
                 <td>{challenge.challenger}</td>
-                <td>{challenge.goal}</td>
+                <td>{challenge.measureable_goal}</td>
                 <td>{challenge.notes}</td>
                 <td>{challenge.wager}</td>
                 <td>{challenge.dates}</td>
@@ -71,7 +63,6 @@ console.log("delete item", deleteItem)
                 <td><button className='delete-button'
                 onClick={() =>handleDelete(challenge.id)}>
                    Delete</button></td>
-                   {console.log("measurable.goal",challenge.goal)}
               </tr>
             ))}
           </tbody>

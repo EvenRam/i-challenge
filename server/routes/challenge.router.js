@@ -3,7 +3,8 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * GET route endpoint --- sets up the HTTP GET request 
+ * The variable sqText is a SQL query to select all columns from the challenge table.
  */
 router.get('/', (req, res) => {
     // GET route code here
@@ -37,7 +38,7 @@ router.post('/', (req, res) => {
    `;
 
     const sqValues = [
-        newChallenge.name,
+        newChallenge.challenge_name,
         newChallenge.challenger,
         Number(newChallenge.measureable_goal),
         newChallenge.notes,
@@ -45,8 +46,7 @@ router.post('/', (req, res) => {
         newChallenge.dates,
         req.user.id
     ]
-    console.log ("measurable goal",newChallenge.measureable_goal)
-    
+
     pool.query(sqlText, sqValues)
         .then((result) => {
             console.log('added challenge to the database', newChallenge);
