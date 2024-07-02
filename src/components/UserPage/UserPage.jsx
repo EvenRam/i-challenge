@@ -11,7 +11,6 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const challenges = useSelector(store => store.challengeReducer)
 
-  console.log("challenges", challenges)
   const dispatch = useDispatch();
   const history = useHistory()
 
@@ -27,7 +26,7 @@ function UserPage() {
   console.log("Delete Clicked");
   console.log("challenge id is", challengeId)
   dispatch({type:"DELETE_CHALLENGE",payload:challengeId})
-}
+  }
   return (
     <>
       <div className="container">
@@ -50,21 +49,25 @@ function UserPage() {
               <th>Delete</th>
             </tr>
           </thead>
+
+          {/* {console.log("UserPAge challenges:", challenges)} */}
+{/*.map needs to have an condition if it has any empty array*/}
           <tbody>
-            {challenges.map((challenge) => (
-              <tr key={challenge.id}>
-                <td>{challenge.challenge_name}</td>
-                <td>{challenge.challenger}</td>
-                <td>{challenge.measureable_goal}</td>
-                <td>{challenge.notes}</td>
-                <td>{challenge.wager}</td>
-                <td>{challenge.dates}</td>
-                <td><button> Edit </button></td>
-                <td><button className='delete-button'
-                onClick={() =>handleDelete(challenge.id)}>
-                   Delete</button></td>
-              </tr>
-            ))}
+            {(challenges.length > 0 && Array.isArray(challenges)) && 
+              challenges.map((challenge) => (
+                <tr key={challenge.id}>
+                  <td>{challenge.challenge_name}</td>
+                  <td>{challenge.challenger}</td>
+                  <td>{challenge.measureable_goal}</td>
+                  <td>{challenge.notes}</td>
+                  <td>{challenge.wager}</td>
+                  <td>{challenge.dates}</td>
+                  <td><button> Edit </button></td>
+                  <td><button className='delete-button'
+                  onClick={() =>handleDelete(challenge.id)}>
+                    Delete</button></td>
+                </tr>
+              ))}
           </tbody>
 
         </table>
