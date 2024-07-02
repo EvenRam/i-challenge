@@ -1,10 +1,13 @@
-const challengeReducer = (state = [], action) => {
-  switch (action.type) {
-      case "SET_CHALLENGE":
-          return action.payload; 
-      default:
-          return state;
-  }
-};
 
-export default challengeReducer;
+const challengeReducer = (state = [],action) => {
+    if (action.type === "SET_CHALLENGE") {
+        console.log('action.payload', action.payload)
+        const newChallenge = action.payload
+        return newChallenge
+
+      }
+      return state;
+}
+
+  
+export default challengeReducer

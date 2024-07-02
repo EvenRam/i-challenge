@@ -23,9 +23,6 @@ router.get('/', (req, res) => {
         })
 });
 
-
-
-
 router.post('/', (req, res) => {
     console.log('POST/new challenge req.body', req.body)
 
@@ -58,15 +55,16 @@ router.post('/', (req, res) => {
         })
 });
 
-router.delete('/challenge/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
+
     const challengeId = req.params.id;
     console.log('Delete request for id', challengeId);
     const userId = req.user.id;
 
     const queryText = `
-DELETE FROM "challenge"
-WHERE "id" = $1 AND "user_id" = $2;
-`;
+            DELETE FROM "challenge"
+             WHERE "id" = $1 AND "user_id" = $2;
+             `;
     pool.query(queryText, [challengeId, userId])
         .then((result) => {
             if (result.rowCount > 0) {
@@ -76,7 +74,7 @@ WHERE "id" = $1 AND "user_id" = $2;
             }
         })
         .catch((error) => {
-            console.log('Error with Delete', error);
+            console.log(`Error making query.. '${queryText}'`, error)
             res.sendStatus(500)
         })
 });

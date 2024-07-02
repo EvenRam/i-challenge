@@ -11,7 +11,7 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const challenges = useSelector(store => store.challengeReducer)
 
-  
+  console.log("challenges", challenges)
   const dispatch = useDispatch();
   const history = useHistory()
 
@@ -59,7 +59,7 @@ function UserPage() {
                 <td>{challenge.notes}</td>
                 <td>{challenge.wager}</td>
                 <td>{challenge.dates}</td>
-                <td><button  type='submit'> Edit </button></td>
+                <td><button> Edit </button></td>
                 <td><button className='delete-button'
                 onClick={() =>handleDelete(challenge.id)}>
                    Delete</button></td>

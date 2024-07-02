@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from 'react-router-dom';
 
 
 const CreateChallenge = () => {
@@ -30,7 +30,7 @@ const CreateChallenge = () => {
                 notes: notes,
                 dates: "[2023-01-01,2023-12-31]"
             }
-            
+
         })
 
         history.push('/user')
@@ -40,10 +40,12 @@ const CreateChallenge = () => {
         <>
             <h2> New Challenge Form</h2>
             <form className='form' onSubmit={handleSubmit}>
+
                 <div className="name">
                     <label htmlFor="challengeName">Challenge Name:</label>
                     <input
                         type='text'
+                        id="challengeName" 
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                     />
@@ -52,7 +54,7 @@ const CreateChallenge = () => {
                 <div className="form-goal">
                     <label htmlFor="goal">What is your goal and why:</label>
                     <input
-                        type='text'
+                        id="goal" 
                         value={goal}
                         onChange={(event) => setGoal(event.target.value)}
                     />
@@ -61,15 +63,17 @@ const CreateChallenge = () => {
                 <div className="aim">
                     <label htmlFor="aim">How many days do you want to work on this goal:</label>
                     <input
+                        id="aim" 
                         type='number'
                         value={aim}
                         onChange={(event) => setAim(event.target.value)}
                     />
                 </div>
 
-                <div className="aim">
+                <div className="wager">
                     <label htmlFor="wager">Wager - Enter a reward or consequence for your challenge:</label>
                     <input
+                        id="wager" 
                         type='text'
                         value={wager}
                         onChange={(event) => setWager(event.target.value)}
@@ -79,14 +83,14 @@ const CreateChallenge = () => {
                 <div className="notes">
                     <label htmlFor="notes">Notes:</label>
                     <input
+                        id="notes" 
                         type='text'
                         value={notes}
                         onChange={(event) => setNotes(event.target.value)}
                     />
                 </div>
 
-                <button onClick={handleSubmit}
-                    type="submit">Submit</button>
+                <button onClick={handleSubmit}>Submit</button>
             </form>
 
         </>

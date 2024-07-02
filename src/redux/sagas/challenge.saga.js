@@ -4,6 +4,7 @@ import axios from 'axios';
 function* fetchChallenge() {
     try {
         const challengeResponse = yield axios.get(`/api/challenge`)
+        console.log("challengeResponse", challengeResponse)
         yield put({ type: 'SET_CHALLENGE', payload: challengeResponse.data })
     } catch (error) {
         console.log('error with the challenge fetch request', error)
@@ -13,7 +14,7 @@ function* addChallenge(action) {
     try {
       yield axios.post("/api/challenge", action.payload);
         yield put({ type: "SET_CHALLENGE", payload: {
-            name: action.payload.challenge_name,
+            challenge_name: action.payload.challenge_name,
             challenger: action.payload.challenger,
             measureable_goal: action.payload.measureable_goal,
             goal: action.payload.goal,
