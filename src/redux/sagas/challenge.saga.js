@@ -31,9 +31,11 @@ function* addChallenge(action) {
 
 function* deleteChallenge(action){
     try{
+        console.log("action.payload.id:", action.payload.id); 
+
         yield axios.delete(`/api/challenge/${action.payload.id}`);
-        yield put({type: 'DELETE_CHALLENGE_WORKED',payload: action.payload.id})
-        yield put({ type: 'SET_CHALLENGE', payload: action.payload })
+        // yield put({type: 'DELETE_CHALLENGE_WORKED',payload: action.payload.id})
+        yield put({ type: 'FETCH_CHALLENGE'})
     } catch (error){
         console.log('Error with the challenge delete request', error)
     }

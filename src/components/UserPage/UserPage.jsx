@@ -25,7 +25,7 @@ function UserPage() {
   const handleDelete = (challengeId)=>{
   console.log("Delete Clicked");
   console.log("challenge id is", challengeId)
-  dispatch({type:"DELETE_CHALLENGE",payload:challengeId})
+  dispatch({type:"DELETE_CHALLENGE",payload:{id:challengeId}})
   }
   return (
     <>

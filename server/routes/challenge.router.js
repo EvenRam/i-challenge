@@ -58,8 +58,10 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
 
     const challengeId = req.params.id;
-    console.log('Delete request for id', challengeId);
+    console.log('Delete request for challengeid', challengeId);
+
     const userId = req.user.id;
+    console.log('Delete request for id', userId);
 
     const queryText = `
             DELETE FROM "challenge"
