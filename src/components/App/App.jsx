@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import CreateChallenge from '../CreateChallenge.jsx/CreateChallenge';
+import EditForm from '../EditForm/EditForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +61,11 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+
+          {/* <Route exact path="edit">
+            <EditForm/>
+            </Route> */}
+
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -111,9 +117,11 @@ function App() {
             }
           </Route>
 
-            <Route>
-            <CreateChallenge/>
-
+            <Route
+              exact
+              path="/createChallenge"
+            >
+              <CreateChallenge/>
             </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

@@ -2,6 +2,8 @@ import React from 'react';
 //import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect } from 'react';
+
 
 
 function UserPage() {
@@ -9,38 +11,27 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const challenges = useSelector(store => store.challengeReducer)
 
-  console.log("what is challenges", challenges);
-
   const dispatch = useDispatch();
   const history = useHistory()
 
+  useEffect(() => {
+    dispatch({ type: "FETCH_CHALLENGE" })
+  }, []);
 
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // const challengeData = {
-    //   name: name,
-    //   challenger: challenger,
-    //   aim: aim,
-    //   wager: wager,
-    //   notes: notes,
-    //   dates: dates,
-    // }
-    dispatch({
-      type: 'SET_CHALLENGE',
-      payload: name
-    })
+  const handleSubmit = () => {
     history.push("/createChallenge")
   }
 
-
-
+  const handleDelete = (challengeId)=>{
+  console.log("Delete Clicked");
+  console.log("challenge id is", challengeId)
+  dispatch({type:"DELETE_CHALLENGE",payload:{id:challengeId}})
+  }
   return (
     <>
       <div className="container">
         <h2>Welcome, {user.username}!</h2>
         {/* <p>Your ID is: {user.id}</p> */}
-
         <h2> Your Current Challenges</h2>
       </div>
       <div>
@@ -58,22 +49,31 @@ function UserPage() {
               <th>Delete</th>
             </tr>
           </thead>
-          <tbody>
 
-            {/* {challenges.map(challenge => (
-            <tr key= {challenge.id}>
-              <td>{challenge.name}</td>
-              <td>{challenge.challenger}</td>
-              <td>{challenge.goal}</td>
-              <td>{challenge.notes}</td>
-              <td>{challenge.wager}</td>
-              <td>{challenge.dates}</td>
-            </tr>
-          ))} */}
+          {/* {console.log("UserPAge challenges:", challenges)} */}
+{/*.map needs to have an condition if it has any empty array*/}
+          <tbody>
+            {(challenges.length > 0 && Array.isArray(challenges)) && 
+              challenges.map((challenge) => (
+                <tr key={challenge.id}>
+                  <td>{challenge.challenge_name}</td>
+                  <td>{challenge.challenger}</td>
+                  <td>{challenge.measureable_goal}</td>
+                  <td>{challenge.notes}</td>
+                  <td>{challenge.wager}</td>
+                  <td>{challenge.dates}</td>
+                  <td><button> Edit </button></td>
+                  <td><button className='delete-button'
+                  onClick={() =>handleDelete(challenge.id)}>
+                    Delete</button></td>
+                </tr>
+              ))}
           </tbody>
 
         </table>
-        <button onClick={handleSubmit} type='submit'> Create Challenge</button>
+        <button className='create-button' 
+        onClick={handleSubmit} type='button'> 
+        Create Challenge</button>
         {/* <LogOutButton className="btn" />  */}
       </div>
     </>

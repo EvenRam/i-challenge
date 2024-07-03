@@ -3,35 +3,47 @@ import axios from 'axios';
 
 function* fetchChallenge() {
     try {
-        const challenge = yield axios.get(`/api/challenge`)
-        yield put({ type: 'SET_CHALLENGE', payload: challenge.data })
+        const challengeResponse = yield axios.get(`/api/challenge`)
+        console.log("challengeResponse data", challengeResponse.data)
+        yield put({ type: 'SET_CHALLENGE', payload: challengeResponse.data })
     } catch (error) {
-        console.log('error with the shelf get request', error)
+        console.log('error with the challenge fetch request', error)
     }
 }
-
 function* addChallenge(action) {
-console.log("action payload for add challenge",action.payload)
+    console.log("Inside addChallenge, payload", action.payload)
     try {
-        yield axios.post("/api/challenge", {
-            name: action.payload.name,
+      yield axios.post("/api/challenge", action.payload);
+        yield put({ type: "SET_CHALLENGE", payload: {
+            challenge_name: action.payload.challenge_name,
             challenger: action.payload.challenger,
             measureable_goal: action.payload.measureable_goal,
             goal: action.payload.goal,
             notes: action.payload.notes,
             wager: action.payload.wager,
             dates: action.payload.dates
-        });
-        yield put({ type: "SET_CHALLENGE" });
+        }
+    });
     } catch (error) {
         console.log('error with add challenge post request', error)
     }
+}
 
+function* deleteChallenge(action){
+    try{
+        console.log("action.payload.id:", action.payload.id); 
+
+        yield axios.delete(`/api/challenge/${action.payload.id}`);
+        // yield put({type: 'DELETE_CHALLENGE_WORKED',payload: action.payload.id})
+        yield put({ type: 'FETCH_CHALLENGE'})
+    } catch (error){
+        console.log('Error with the challenge delete request', error)
+    }
 }
 
 function* challengeSaga() {
     yield takeLatest('FETCH_CHALLENGE', fetchChallenge);
     yield takeLatest('ADD_CHALLENGE', addChallenge)
+    yield takeLatest('DELETE_CHALLENGE', deleteChallenge)
 }
-
 export default challengeSaga

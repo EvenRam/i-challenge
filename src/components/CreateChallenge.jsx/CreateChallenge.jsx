@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from 'react-router-dom';
 
 
 const CreateChallenge = () => {
@@ -17,41 +17,35 @@ const CreateChallenge = () => {
     let [wager, setWager] = useState("")
     let [notes, setNotes] = useState("")
 
-    // console.log("What is the name of challenge",name);
-    // console.log("What is the name of goal",goal);
-    // console.log("What is the name of aim",aim);
-    // console.log("What is the name of wager",wager);
-    // console.log("What is the name of notes",notes);
-
-
-
-
-
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch({
             type: 'ADD_CHALLENGE',
             payload: {
-                name: name,
-                measureable_goal: 4,
+                challenge_name: name,
+                measureable_goal: aim,
                 goal: goal,
                 challenger: "self",
                 wager: wager,
                 notes: notes,
                 dates: "[2023-01-01,2023-12-31]"
             }
+
         })
+
         history.push('/user')
     }
-// Start date: January 1, 2023 // End date: December 31, 2023 ];
+    // Start date: January 1, 2023 // End date: December 31, 2023 ];
     return (
         <>
             <h2> New Challenge Form</h2>
             <form className='form' onSubmit={handleSubmit}>
+
                 <div className="name">
                     <label htmlFor="challengeName">Challenge Name:</label>
                     <input
                         type='text'
+                        id="challengeName" 
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                     />
@@ -60,7 +54,7 @@ const CreateChallenge = () => {
                 <div className="form-goal">
                     <label htmlFor="goal">What is your goal and why:</label>
                     <input
-                        type='text'
+                        id="goal" 
                         value={goal}
                         onChange={(event) => setGoal(event.target.value)}
                     />
@@ -69,15 +63,17 @@ const CreateChallenge = () => {
                 <div className="aim">
                     <label htmlFor="aim">How many days do you want to work on this goal:</label>
                     <input
+                        id="aim" 
                         type='number'
                         value={aim}
                         onChange={(event) => setAim(event.target.value)}
                     />
                 </div>
 
-                <div className="aim">
+                <div className="wager">
                     <label htmlFor="wager">Wager - Enter a reward or consequence for your challenge:</label>
                     <input
+                        id="wager" 
                         type='text'
                         value={wager}
                         onChange={(event) => setWager(event.target.value)}
@@ -87,14 +83,14 @@ const CreateChallenge = () => {
                 <div className="notes">
                     <label htmlFor="notes">Notes:</label>
                     <input
+                        id="notes" 
                         type='text'
                         value={notes}
                         onChange={(event) => setNotes(event.target.value)}
                     />
                 </div>
 
-                <button onClick={handleSubmit}
-                    type="submit">Submit</button>
+                <button onClick={handleSubmit}>Submit</button>
             </form>
 
         </>
