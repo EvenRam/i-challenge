@@ -62,10 +62,14 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          {/* <Route exact path="edit">
+          <Route exact path="/edit"
+          >
             <EditForm/>
-            </Route> */}
+          </Route>
 
+          <Route exact path="/" component={UserPage} />
+                {/* TODO Add Edit Route */}
+                <Route exact path="/edit" component={EditForm} />
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
