@@ -55,6 +55,52 @@ router.post('/', (req, res) => {
         })
 });
 
+
+router.put('/:id', (req, res) => {
+    //updating single student
+
+    const idToUpdate = req.params.id;
+    const editChallenge = req.body
+
+    console.log('req.body', editChallenge)
+    console.log("req.params.id", idToUpdate)
+
+    const updateChallenges =
+        [
+            editChallenge.challenge_name,
+            editChallenge.measureable_goal,
+            editChallenge.notes,
+            editChallenge.wager,
+            editChallenge.dates,
+            idToUpdate,
+            req.user.id
+        ]
+  
+    const sqlText = `
+        UPDATE "challenge"
+        SET "challenge_name" = $1,
+        "measureable_goal" = $2,
+        "notes" = $3, 
+        "wager" = $4,
+        "dates" = $5
+        WHERE "id" = $6 AND "user_id" = $7;
+`
+    pool.query(sqlText, updateChallenges)
+
+        .then((result) => {
+            if (result.rowCount > 0) {
+                res.sendStatus(204);
+            } else {
+                res.sendStatus(403);
+            }
+        })
+        .catch((error) => {
+            console.error('Error updating challenge:', error);
+            res.sendStatus(500);
+        })
+});
+
+
 router.delete('/:id', (req, res) => {
 
     const challengeId = req.params.id;

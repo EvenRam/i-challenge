@@ -4,9 +4,12 @@ const challengeReducer = (state = [],action) => {
         const newChallenge = action.payload
         console.log('New Challenge', newChallenge)
         return newChallenge
+
       }
       return state;
 }
 
-  
+
+
+
 export default challengeReducer

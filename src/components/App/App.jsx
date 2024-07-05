@@ -62,10 +62,9 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          {/* <Route exact path="edit">
-            <EditForm/>
-            </Route> */}
 
+
+          <Route exact path="/edit" component={EditForm} />
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -117,12 +116,12 @@ function App() {
             }
           </Route>
 
-            <Route
-              exact
-              path="/createChallenge"
-            >
-              <CreateChallenge/>
-            </Route>
+          <Route
+            exact
+            path="/createChallenge"
+          >
+            <CreateChallenge />
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
