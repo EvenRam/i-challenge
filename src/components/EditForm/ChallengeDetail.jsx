@@ -10,7 +10,7 @@ function ChallengeDetail(props){
     const handleEdit = () => {
 // disptaching to the sotre, the student being edited. 
         // using SET_CHALLENGE_LIST action 
-        dispatch({ type: 'SET_CHALLENGE_LIST', payload: props.challenge})
+        dispatch({ type: 'SET_CHALLENGE', payload: props.challenge})
 
         // route to editForm 
         history.push('/edit');

@@ -1,11 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
-import {useEffect } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 
 function EditForm(props) {
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
+
   const editChallenge = useSelector((store) => store.editChallenge)
 
 
@@ -22,7 +25,7 @@ function EditForm(props) {
 
   function measurableGoalChange(event) {
     dispatch({
-      type: "measureable_goal",
+      type: "EDIT_ONCHANGE",
       payload: {
         property: "measureable_goal", value: event.target.value,
       }
@@ -31,7 +34,7 @@ function EditForm(props) {
 
   function handleNotesChange(event) {
     dispatch({
-      type: "notes",
+      type: "EDIT_ONCHANGE",
       payload: {
         property: "notes", value: event.target.value,
       }
@@ -40,7 +43,7 @@ function EditForm(props) {
 
   function handleWagerChange(event) {
     dispatch({
-      type: "wager",
+      type: "EDIT_ONCHANGE",
       payload: {
         property: "wager", value: event.target.value,
       }
@@ -50,7 +53,7 @@ function EditForm(props) {
 
   function handleDatesChange(event) {
     dispatch({
-      type: "dates",
+      type: "EDIT_ONCHANGE",
       payload: {
         property: "dates", value: event.target.value,
       }
@@ -61,14 +64,17 @@ function EditForm(props) {
   function handleSubmit(event) {
     event.preventDefault();
 
+    console.log("edit challenge", editChallenge)
+
+
     // PUT REQUEST to /challenges/:id
-    axios.put(`/challenge/${editChallenge.id}`, editChallenge)
+    axios.put(`/api/challenge/${editChallenge.id}`, editChallenge)
       .then(response => {
         // clean up reducer data            
         dispatch({ type: 'EDIT_CLEAR' });
 
         // refresh will happen with useEffect on Home
-        history.push('/'); // back to list
+        history.push('/user'); // back to list
       })
       .catch(error => {
         console.log('error on PUT: ', error);

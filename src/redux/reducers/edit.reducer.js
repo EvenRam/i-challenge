@@ -2,7 +2,7 @@
 
 // HOLD ONLY THE SINGLE STUDENT OBJECT BEING EDITED 
 const editChallenge =(state = {}, action) => {
-  if(action.type === "SET_CHALLENGE_LIST"){
+  if(action.type === "SET_CHALLENGE"){
     return action.payload
   } else if ( action.type === 'EDIT_ONCHANGE'){
     return{

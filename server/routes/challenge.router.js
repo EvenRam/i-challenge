@@ -56,47 +56,48 @@ router.post('/', (req, res) => {
 });
 
 
-router.put('/:id', (req,res)=>{
-//updating single student
+router.put('/:id', (req, res) => {
+    //updating single student
 
-const idToUpdate = req.params.id;
-const editChallenge = req.body
+    const idToUpdate = req.params.id;
+    const editChallenge = req.body
 
-const updateChallenges =
- [
-    editChallenge.challenge_name,
-  editChallenge.measureable_goal,
-  editChallenge.notes,
-  editChallenge.wager,
-  editChallenge.dates,
-  editChallenge.id,
-  req.user.id
-]
-console.log('req.body', updateChallenges)
-console.log("req.params.id", idToUpdate)
+    console.log('req.body', editChallenge)
+    console.log("req.params.id", idToUpdate)
 
-const sqlText= `
-UPDATE "challenge"
-SET "challenge_name" = $1,
-"measureable_goal" = $2,
-"notes" = $3, 
-"wager" = $4,
-"dates" = $5, 
-WHERE "id" = $6 AND "user_id" = $7;
+    const updateChallenges =
+        [
+            editChallenge.challenge_name,
+            editChallenge.measureable_goal,
+            editChallenge.notes,
+            editChallenge.wager,
+            editChallenge.dates,
+            idToUpdate,
+            req.user.id
+        ]
+  
+    const sqlText = `
+        UPDATE "challenge"
+        SET "challenge_name" = $1,
+        "measureable_goal" = $2,
+        "notes" = $3, 
+        "wager" = $4,
+        "dates" = $5
+        WHERE "id" = $6 AND "user_id" = $7;
 `
-pool.query(sqlText, updateChallenges [idToUpdate])
+    pool.query(sqlText, updateChallenges)
 
-.then((result)=> {
-    if (result.rowCount > 0){
-        res.sendStatus(204);
-    }else{
-        res.sendStatu(403);
-    }
-})
-.catch((error)=>{
-    console.error('Error updating challenge:', error);
-    res.sendStatus(500);
-})
+        .then((result) => {
+            if (result.rowCount > 0) {
+                res.sendStatus(204);
+            } else {
+                res.sendStatus(403);
+            }
+        })
+        .catch((error) => {
+            console.error('Error updating challenge:', error);
+            res.sendStatus(500);
+        })
 });
 
 
