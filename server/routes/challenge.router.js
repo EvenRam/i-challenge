@@ -31,11 +31,15 @@ router.post('/', (req, res) => {
 
     const sqlText = `
    INSERT INTO "challenge" ("challenge_name","challenger","measureable_goal","notes", "wager","dates", "user_id")
-   VALUES ($1, $2, $3, $4, $5, $6, $7);
+   VALUES ($1, $2, $3, $4, $5, daterange $6, $7);
    `;
+
+    // Format dates properly for PostgreSQL
+    
 
     const sqValues = [
         newChallenge.challenge_name,
+        // newChallenge.goal_statement,
         newChallenge.challenger,
         Number(newChallenge.measureable_goal),
         newChallenge.notes,

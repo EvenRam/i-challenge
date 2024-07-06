@@ -21,8 +21,10 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
-import CreateChallenge from '../CreateChallenge.jsx/CreateChallenge';
+import CreateChallenge from '../CreateChallenge/CreateChallenge';
 import EditForm from '../EditForm/EditForm';
+import CalendarTest from '../CalendarTest/CalendarTest';
+import ChallengeProgress from '../ChallengeProgress/ChallengeProgress';
 
 function App() {
   const dispatch = useDispatch();
@@ -116,11 +118,26 @@ function App() {
             }
           </Route>
 
+           <Route
+            exact
+            path="/calendarTest"
+          >
+            <CalendarTest />
+          </Route> 
+
+
           <Route
             exact
             path="/createChallenge"
           >
             <CreateChallenge />
+          </Route>
+
+          <Route
+            exact
+            path="/progress"
+          >
+            <ChallengeProgress />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
@@ -129,6 +146,9 @@ function App() {
           </Route>
         </Switch>
         <Footer />
+
+        
+
       </div>
     </Router>
   );

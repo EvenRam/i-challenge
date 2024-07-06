@@ -1,6 +1,8 @@
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { Calendar } from 'primereact/calendar';
 
 
 function EditForm(props) {
@@ -12,22 +14,35 @@ function EditForm(props) {
   const editChallenge = useSelector((store) => store.editChallenge)
 
 
+    function handleDatesChange(event) {
+
+    const dates = event.value;
+
+    dispatch({
+      type: 'EDIT_ONCHANGE',
+      payload: {
+        property: 'dates',
+        value: dates,      },
+    });
+  }
 
   function handleNameChange(event) {
     dispatch({
       type: 'EDIT_ONCHANGE',
       payload: {
-        property: 'challenge_name', value: event.target.value,
+        property: 'challenge_name', 
+        value: event.target.value,
       }
     })
   }
 
-
+ 
   function measurableGoalChange(event) {
     dispatch({
       type: "EDIT_ONCHANGE",
       payload: {
-        property: "measureable_goal", value: event.target.value,
+        property: "measureable_goal", 
+        value: event.target.value,
       }
     })
   }
@@ -36,7 +51,8 @@ function EditForm(props) {
     dispatch({
       type: "EDIT_ONCHANGE",
       payload: {
-        property: "notes", value: event.target.value,
+        property: "notes", 
+        value: event.target.value,
       }
     })
   }
@@ -45,20 +61,13 @@ function EditForm(props) {
     dispatch({
       type: "EDIT_ONCHANGE",
       payload: {
-        property: "wager", value: event.target.value,
+        property: "wager", 
+        value: event.target.value,
       }
     })
   }
 
 
-  function handleDatesChange(event) {
-    dispatch({
-      type: "EDIT_ONCHANGE",
-      payload: {
-        property: "dates", value: event.target.value,
-      }
-    })
-  }
 
 
   function handleSubmit(event) {
@@ -93,11 +102,20 @@ function EditForm(props) {
       {console.log('edit challenge', editChallenge)
       }
       <form onSubmit={handleSubmit}>
+
         <input
           onChange={(event) => handleNameChange(event)}
           placeholder='Challenge Name'
           value={editChallenge.challenge_name}>
         </input>
+
+
+        {/* <input
+          onChange={(event) => handleGoalChange(event)}
+          placeholder='Goal Statement'
+          value={editChallenge.goal_statement}>
+        </input> */}
+
 
         <input
           onChange={(event) => measurableGoalChange(event)}
@@ -117,11 +135,19 @@ function EditForm(props) {
           value={editChallenge.wager}>
         </input>
 
-        <input
-          onChange={(event) => handleDatesChange(event)}
-          placeholder='Dates'
-          value={editChallenge.dates}>
-        </input>
+        <div className="calendar-container">
+          <label htmlFor="dates">Select start and End dates:</label>
+          <Calendar
+            value={editChallenge.selectedDates}
+            onChange={(event) => handleDatesChange(event)}
+            selectionMode="range"
+            readOnlyInput
+            hideOnDateTimeSelect
+          />
+        </div>
+
+
+        {console.log("editChallenge.selectedDates",editChallenge.selectedDates)}
 
         <input type='submit' value='Update Challenge' />
 

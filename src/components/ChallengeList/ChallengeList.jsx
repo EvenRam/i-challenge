@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect } from 'react';
+
 import ChallengeDetail from '../EditForm/ChallengeDetail';
 
 function ChallengeList(props){
@@ -33,6 +34,7 @@ function ChallengeList(props){
             <thead>
               <tr>
                 <th>Challenge Name</th>
+                {/* <th>Goal Statement</th> */}
                 <th>Challenger</th>
                 <th>Weekly Aim</th>
                 <th>Notes</th>
@@ -40,6 +42,7 @@ function ChallengeList(props){
                 <th>Dates</th>
                 <th>Edit</th>
                 <th>Delete</th>
+
               </tr>
             </thead>
   
