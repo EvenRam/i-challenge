@@ -17,9 +17,8 @@ const CreateChallenge = () => {
     let [aim, setAim] = useState("")
     let [wager, setWager] = useState("")
     let [notes, setNotes] = useState("")
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-
+    let [startDate, setStartDate] = useState(null);
+    let [endDate, setEndDate] = useState(null);
 
 
     const handleSubmit = (event) => {
@@ -96,12 +95,12 @@ const CreateChallenge = () => {
                 </div>
 
                 <div className="card flex justify-content-center">
-                <label htmlFor="notes">Start Date:</label>
+                    <label htmlFor="notes">Start Date:</label>
                     <Calendar value={startDate} onChange={(event) => setStartDate(event.value)} />
                 </div>
 
                 <div className="card flex justify-content-center">
-                <label htmlFor="notes">End Date:</label>
+                    <label htmlFor="notes">End Date:</label>
 
                     <Calendar value={endDate} onChange={(event) => setEndDate(event.value)} />
                 </div>

@@ -12,6 +12,9 @@ function EditForm(props) {
 
   const editChallenge = useSelector((store) => store.editChallenge)
 
+  // Format dates
+ 
+
   function handleNameChange(event) {
     dispatch({
       type: 'EDIT_ONCHANGE',
