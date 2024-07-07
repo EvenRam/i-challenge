@@ -21,7 +21,10 @@ function* addChallenge(action) {
             measureable_goal: action.payload.measureable_goal,
             notes: action.payload.notes,
             wager: action.payload.wager,
-            dates: action.payload.dates
+            start_date: action.payload.start_date,
+            end_date: action.payload.end_date,
+
+
         }
     });
     } catch (error) {

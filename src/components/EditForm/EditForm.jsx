@@ -10,21 +10,7 @@ function EditForm(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
   const editChallenge = useSelector((store) => store.editChallenge)
-
-
-    function handleDatesChange(event) {
-
-    const dates = event.value;
-
-    dispatch({
-      type: 'EDIT_ONCHANGE',
-      payload: {
-        property: 'dates',
-        value: dates,      },
-    });
-  }
 
   function handleNameChange(event) {
     dispatch({
@@ -67,8 +53,25 @@ function EditForm(props) {
     })
   }
 
+  function handleStartDate(event) {
+    dispatch({
+      type: 'EDIT_ONCHANGE',
+      payload: {
+        property: 'start_date',
+        value: event.value,      
+      },
+    });
+  }
 
-
+  function handleEndDate(event) {
+    dispatch({
+      type: 'EDIT_ONCHANGE',
+      payload: {
+        property: 'end_date',
+        value: event.value,       
+      },
+    });
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -109,14 +112,6 @@ function EditForm(props) {
           value={editChallenge.challenge_name}>
         </input>
 
-
-        {/* <input
-          onChange={(event) => handleGoalChange(event)}
-          placeholder='Goal Statement'
-          value={editChallenge.goal_statement}>
-        </input> */}
-
-
         <input
           onChange={(event) => measurableGoalChange(event)}
           placeholder='Weekly Aim'
@@ -136,18 +131,23 @@ function EditForm(props) {
         </input>
 
         <div className="calendar-container">
-          <label htmlFor="dates">Select start and End dates:</label>
+          <label htmlFor="dates">Select start Date:</label>
           <Calendar
-            value={editChallenge.selectedDates}
-            onChange={(event) => handleDatesChange(event)}
-            selectionMode="range"
-            readOnlyInput
-            hideOnDateTimeSelect
+            value={editChallenge.sart_date}
+            onChange={(event) => handleStartDate(event)}           
           />
         </div>
 
+        <div className="calendar-container">
+          <label htmlFor="dates">Select End Date:</label>
+          <Calendar
+            value={editChallenge.end_date}
+            onChange={(event) => handleEndDate(event)}
+            
+          />
+        </div>
 
-        {console.log("editChallenge.selectedDates",editChallenge.selectedDates)}
+        {console.log("editChallenge.selectedDates",editChallenge.start_date)}
 
         <input type='submit' value='Update Challenge' />
 

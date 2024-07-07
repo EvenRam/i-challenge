@@ -39,7 +39,8 @@ function ChallengeList(props){
                 <th>Weekly Aim</th>
                 <th>Notes</th>
                 <th>Wager</th>
-                <th>Dates</th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>Edit</th>
                 <th>Delete</th>
 

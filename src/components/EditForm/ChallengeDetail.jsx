@@ -50,7 +50,9 @@ return(
                     <td>{props.challenge.measureable_goal}</td>
                     <td>{props.challenge.notes}</td>
                     <td>{props.challenge.wager}</td>
-                    <td>{props.challenge.dates}</td>
+                    <td>{props.challenge.start_date}</td>
+                    <td>{props.challenge.end_date}</td>
+
 
                     <td><button className='edit-button'
                     onClick={()=> handleEdit(props.challenge.id)}> 
