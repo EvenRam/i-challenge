@@ -30,20 +30,23 @@ router.post('/', (req, res) => {
     console.log('add new challenge', newChallenge)
 
     const sqlText = `
-   INSERT INTO "challenge" ("challenge_name","challenger","measureable_goal","notes", "wager","dates", "user_id")
-   VALUES ($1, $2, $3, $4, $5, $6, $7);
+   INSERT INTO "challenge" ("challenge_name","challenger","measureable_goal","notes", "wager","start_date", "end_date", "user_id")
+   VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
    `;
-
+    
     const sqValues = [
         newChallenge.challenge_name,
+        // newChallenge.goal_statement,
         newChallenge.challenger,
         Number(newChallenge.measureable_goal),
         newChallenge.notes,
         newChallenge.wager,
-        newChallenge.dates,
+        newChallenge.start_date,
+        newChallenge.end_date,
         req.user.id
     ]
 
+    console.log("end date", newChallenge.end_date)
     pool.query(sqlText, sqValues)
         .then((result) => {
             console.log('added challenge to the database', newChallenge);
@@ -71,7 +74,8 @@ router.put('/:id', (req, res) => {
             editChallenge.measureable_goal,
             editChallenge.notes,
             editChallenge.wager,
-            editChallenge.dates,
+            editChallenge.start_date,
+            editChallenge.end_date,
             idToUpdate,
             req.user.id
         ]
@@ -82,8 +86,9 @@ router.put('/:id', (req, res) => {
         "measureable_goal" = $2,
         "notes" = $3, 
         "wager" = $4,
-        "dates" = $5
-        WHERE "id" = $6 AND "user_id" = $7;
+        "start_date" = $5,
+        "end_date" = $6
+        WHERE "id" = $7 AND "user_id" = $8;
 `
     pool.query(sqlText, updateChallenges)
 
