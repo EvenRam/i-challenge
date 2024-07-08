@@ -1,4 +1,5 @@
 import React from 'react';
+import "./UserPage.css"
 //import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -23,7 +24,8 @@ function UserPage() {
   return (
     <>
       <div className="container">
-        <h2>Welcome, {user.username}!</h2>
+        <h1>Welcome, {user.first_name}!</h1>
+        <h2> Challenges</h2>
         
         <ChallengeList/>
       </div>

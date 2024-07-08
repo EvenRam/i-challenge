@@ -23,12 +23,14 @@ const CreateChallenge = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        
         dispatch({
             type: 'ADD_CHALLENGE',
             payload: {
                 challenge_name: name,
                 measureable_goal: aim,
-                challenger: "self",
+                // challenger: "self",
                 wager: wager,
                 notes: notes,
                 start_date: startDate,
@@ -55,14 +57,6 @@ const CreateChallenge = () => {
                     />
                 </div>
 
-                {/* <div className="goal">
-                    <label htmlFor="goal">What is your goal and why:</label>
-                    <input
-                        id="goal" 
-                        value={goalStatement}
-                        onChange={(event) => setGoalStatement(event.target.value)}
-                    />
-                </div> */}
 
                 <div className="aim">
                     <label htmlFor="aim">How many days do you want to work on this goal:</label>
@@ -96,7 +90,8 @@ const CreateChallenge = () => {
 
                 <div className="card flex justify-content-center">
                     <label htmlFor="notes">Start Date:</label>
-                    <Calendar value={startDate} onChange={(event) => setStartDate(event.value)} />
+                    <Calendar value={startDate} onChange={(event) => setStartDate(event.value)}
+                    dateFormat="MM d, yy" />
                 </div>
 
                 <div className="card flex justify-content-center">

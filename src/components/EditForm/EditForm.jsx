@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Calendar } from 'primereact/calendar';
 
 
+
 function EditForm(props) {
 
   const dispatch = useDispatch();
@@ -105,8 +106,7 @@ function EditForm(props) {
       <h2>Edit Challlenge</h2>
       <p>About to Edit: {editChallenge.challenge_name}</p>
 
-      {console.log('edit challenge', editChallenge)
-      }
+      {console.log('edit challenge', editChallenge)}
       <form onSubmit={handleSubmit}>
 
         <input
@@ -155,6 +155,8 @@ function EditForm(props) {
         <input type='submit' value='Update Challenge' />
 
       </form>
+
+     
     </>
   );
 }

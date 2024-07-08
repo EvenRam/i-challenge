@@ -13,18 +13,20 @@ function* fetchChallenge() {
 function* addChallenge(action) {
     console.log("Inside addChallenge, payload", action.payload)
     try {
+
+        const formattedStartDate = action.payload.start_date.toISOString();
+        const formattedEndDate = action.payload.end_date.toISOString();
+
       yield axios.post("/api/challenge", action.payload);
-        yield put({ type: "SET_CHALLENGE", 
-        payload: {
+        yield put({ type: "SET_CHALLENGE", payload: {
             challenge_name: action.payload.challenge_name,
-            challenger: action.payload.challenger,
+            // challenger: action.payload.challenger,
             measureable_goal: action.payload.measureable_goal,
+            goal: action.payload.goal,
             notes: action.payload.notes,
             wager: action.payload.wager,
             start_date: action.payload.start_date,
-            end_date: action.payload.end_date,
-
-
+            end_date: action.payload.end_date
         }
     });
     } catch (error) {

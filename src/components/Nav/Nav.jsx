@@ -10,9 +10,11 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">         </h2>
+        <h2 className="nav-title"> "The only Person you are destined to become is the Person
+        you decided to be"  Ralph Waldo Emerson </h2>
       </Link>
       <div>
+
         {/* If no user is logged in, show these links */}
         {!user.id && (
           // If there's no user, show login/registration links

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 function ChallengeProgress() {
 
@@ -41,9 +40,9 @@ function ChallengeProgress() {
 
     return (
         <>
-            {/* <h2> {challenges.challenge_name}</h2> */}
 
-            <h2>Challenge Progress</h2>
+            <h2 className="name">Challenge Progress for: {challenges.challenge_name}</h2>
+
             <table>
                 <thead>
                     <tr>
