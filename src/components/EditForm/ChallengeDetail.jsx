@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 
@@ -8,7 +7,6 @@ function ChallengeDetail(props){
     const dispatch = useDispatch();
     const history = useHistory();
 
-// const [complete, setComplete] = useState(false);
 
     const handleEdit = () => {
 // disptaching to the sotre, the student being edited. 
@@ -25,10 +23,7 @@ function ChallengeDetail(props){
         dispatch({type:"DELETE_CHALLENGE",payload:{id:challengeId}})
         }
 
-// const handleComplete = () => {
-//     setComplete(!complete);
-//     complete()
-// }
+
 
 const handleChallangeProgress = () => {
     dispatch({ type: 'SET_CHALLENGE', payload: props.challenge})
@@ -40,13 +35,11 @@ return(
 
     <>
      <tr>
-                    {/* <td>{props.challenge.challenge_name}</td> */}
                     <td> <button className='challenge-name'
                     onClick={() =>handleChallangeProgress(props.challenge.id)}>
                       {props.challenge.challenge_name}</button></td>
 
-                    {/* <td>{props.challenge.goal_statement}</td> */}
-                    <td>{props.challenge.challenger}</td>
+                    {/* <td>{props.challenge.challenger}</td> */}
                     <td>{props.challenge.measureable_goal}</td>
                     <td>{props.challenge.notes}</td>
                     <td>{props.challenge.wager}</td>
@@ -62,11 +55,7 @@ return(
                     onClick={() =>handleDelete(props.challenge.id)}>
                       Delete</button></td>
 
-                      {/* <td>
-                    <button className='complete-button' onClick={handleComplete}>
-                        {complete ? '✅ Complete' : 'Mark as Complete'}
-                    </button>
-                </td> */}
+                   
 
                   </tr>
     </>

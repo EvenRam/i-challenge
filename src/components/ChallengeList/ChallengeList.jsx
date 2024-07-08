@@ -24,19 +24,14 @@ function ChallengeList(props){
     
     return (
       <>
-        <div className="container">
-         
-          <h2> Your Current Challenges</h2>
-        </div>
+        
         <div>
-          <h2>Challenge List</h2>
           <table >
             <thead>
               <tr>
                 <th>Challenge Name</th>
-                {/* <th>Goal Statement</th> */}
-                <th>Challenger</th>
-                <th>Weekly Aim</th>
+                {/* <th>Challenger</th> */}
+                <th>Weekly Goal</th>
                 <th>Notes</th>
                 <th>Wager</th>
                 <th>Start Date</th>
