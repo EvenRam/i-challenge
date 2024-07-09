@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Calendar } from 'primereact/calendar';
-
+import "./CreateChallenge.css"
 
 
 const CreateChallenge = () => {
@@ -44,12 +44,13 @@ const CreateChallenge = () => {
     // Start date: January 1, 2023 // End date: December 31, 2023 ];
     return (
         <>
-            <h2> New Challenge Form</h2>
+            <h2 className='challenge-form'> New Challenge Form</h2>
             <form className='form' onSubmit={handleSubmit}>
 
                 <div className="name">
                     <label htmlFor="challengeName">Challenge Name:</label>
                     <input
+                    className="challengeName"
                         type='text'
                         id="challengeName"
                         value={name}
@@ -59,8 +60,9 @@ const CreateChallenge = () => {
 
 
                 <div className="aim">
-                    <label htmlFor="aim">How many days do you want to work on this goal:</label>
+                    <label htmlFor="aim">Weekly Goal:</label>
                     <input
+                        className="aim"
                         id="aim"
                         type='number'
                         value={aim}
@@ -69,8 +71,9 @@ const CreateChallenge = () => {
                 </div>
 
                 <div className="wager">
-                    <label htmlFor="wager">Wager - Enter a reward or consequence for your challenge:</label>
+                    <label htmlFor="wager">Wager:</label>
                     <input
+                    className="wager"
                         id="wager"
                         type='text'
                         value={wager}
@@ -81,6 +84,7 @@ const CreateChallenge = () => {
                 <div className="notes">
                     <label htmlFor="notes">Notes:</label>
                     <input
+                    className="notes"
                         id="notes"
                         type='text'
                         value={notes}
@@ -88,14 +92,18 @@ const CreateChallenge = () => {
                     />
                 </div>
 
-                <div className="card flex justify-content-center">
-                    <label htmlFor="notes">Start Date:</label>
+                <div className="card-calendar">
+                    <label 
+                    className="start-calendar"
+                    htmlFor="notes">Start Date:</label>
+                    
                     <Calendar value={startDate} onChange={(event) => setStartDate(event.value)}
-                    dateFormat="MM d, yy" />
+                     />
                 </div>
 
-                <div className="card flex justify-content-center">
-                    <label htmlFor="notes">End Date:</label>
+                <div className="second-calendar">
+                    <label 
+                    className="end-calendar" htmlFor="notes">End Date:</label>
 
                     <Calendar value={endDate} onChange={(event) => setEndDate(event.value)} />
                 </div>

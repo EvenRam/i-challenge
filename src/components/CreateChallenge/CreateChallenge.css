@@ -1,0 +1,65 @@
+/* .form {
+    margin-right: 50px;
+    padding: 15px 10px;
+    text-align: center;
+    font-size: large;
+    font-weight: 400;
+    margin-top: 25px;
+} */
+
+.form{
+    border: 2px solid hsl(0, 0%, 80%);
+    border-radius: 10px;
+    box-shadow: 10px 30px 10px hsla(0,0%,0%,0.1);
+    padding: 50px;
+    margin-left: 400px;
+    text-align: center;
+    max-width: 550px;
+    /* display: inline-block; */
+}
+
+.challenge-form{
+padding: 15px 10px;
+  margin: 15px 0;
+  text-align: center;
+  margin-bottom: 15px;
+
+}
+
+.name{
+    margin-bottom: 30px;
+    padding-right: 5px;
+}
+
+
+.aim{
+    margin-bottom: 25px;
+    padding-right: 18px;
+
+
+}
+
+.wager{
+    margin-bottom: 20px;
+    padding-right: 40px;
+
+
+}
+
+.notes{
+    margin-bottom: 25px;
+    padding-right: 42px;
+
+}
+
+.card-calendar{
+    margin-bottom: 25px;
+    padding-right: 50px;
+
+}
+
+.second-calendar{
+    margin-bottom: 25px;
+    padding-right: 50px;
+
+}

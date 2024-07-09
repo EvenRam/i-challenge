@@ -41,7 +41,7 @@ function ChallengeProgress() {
     return (
         <>
 
-            <h2 className="name">Challenge Progress for: {challenges.challenge_name}</h2>
+            <h2 className="name-challenge">Challenge Progress for: {challenges.challenge_name}</h2>
 
             <table>
                 <thead>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Calendar } from 'primereact/calendar';
+import "./EditForm.css";
 
 
 
@@ -103,56 +104,70 @@ function EditForm(props) {
   return (
     <>
 
-      <h2>Edit Challlenge</h2>
-      <p>About to Edit: {editChallenge.challenge_name}</p>
+      <h2 className="edit-challenge">Edit Challlenge</h2>
+      <p className="about-toedit">About to Edit: {editChallenge.challenge_name}</p>
 
       {console.log('edit challenge', editChallenge)}
-      <form onSubmit={handleSubmit}>
-
+      <form className=' edit-form'
+       onSubmit={handleSubmit}>
+<div>
         <input
+        className="challengename-container"
           onChange={(event) => handleNameChange(event)}
           placeholder='Challenge Name'
           value={editChallenge.challenge_name}>
         </input>
+        </div>
 
+        <div>
         <input
+          className="goal-container"
           onChange={(event) => measurableGoalChange(event)}
           placeholder='Weekly Aim'
           value={editChallenge.measureable_goal}>
         </input>
+        </div>
 
+        <div>
         <input
+        className="notes-container"
           onChange={(event) => handleNotesChange(event)}
           placeholder='notes'
           value={editChallenge.notes}>
         </input>
+        </div>
 
+
+        <div>
         <input
+          className="wager-container"
           onChange={(event) => handleWagerChange(event)}
           placeholder='Wager'
           value={editChallenge.wager}>
         </input>
+        </div>
 
         <div className="calendar-container">
-          <label htmlFor="dates">Select start Date:</label>
+          {/* <label className="calendar-container" htmlFor="dates">Select start Date:</label> */}
           <Calendar
+           placeholder='Start Date'
             value={editChallenge.sart_date}
             onChange={(event) => handleStartDate(event)}           
           />
         </div>
 
         <div className="calendar-container">
-          <label htmlFor="dates">Select End Date:</label>
+          {/* <label className="calendar-container" htmlFor="dates">Select End Date:</label> */}
           <Calendar
+           placeholder='End Date'
             value={editChallenge.end_date}
             onChange={(event) => handleEndDate(event)}
             
           />
         </div>
 
-        {console.log("editChallenge.selectedDates",editChallenge.start_date)}
 
-        <input type='submit' value='Update Challenge' />
+        <input className="update-button" type='submit' value='Update Challenge' />
 
       </form>
 

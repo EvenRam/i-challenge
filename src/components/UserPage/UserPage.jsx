@@ -23,12 +23,12 @@ function UserPage() {
  
   return (
     <>
-      <div className="container">
-        <h1>Welcome, {user.first_name}!</h1>
-        <h2> Challenges</h2>
-        
+      <div className="user-container">
+        <h1 className='welcome'>Welcome, {user.first_name}!</h1>
+        <h2 className='challenges-page'> Challenges</h2>
+      
         <ChallengeList/>
-      </div>
+        </div>
     </>
   );
 }

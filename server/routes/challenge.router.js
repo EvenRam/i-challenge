@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
     console.log('add new challenge', newChallenge)
 
     const sqlText = `
-   INSERT INTO "challenge" ("challenge_name",,"measureable_goal","notes", "wager","start_date", "end_date", "user_id")
+   INSERT INTO "challenge" ("challenge_name","measureable_goal","notes", "wager","start_date", "end_date", "user_id")
    VALUES ($1, $2, $3, $4, $5, $6, $7);
    `;
     

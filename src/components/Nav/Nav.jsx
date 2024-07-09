@@ -10,8 +10,8 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title"> </h2>
-        <h3>I-CHALLENGE</h3>
+        <h2 className="nav-title"> I-CHALLENGE </h2>
+      
         {/* <h2>"The only Person you are destined to become is the Person
         you decided to be"  Ralph Waldo Emerson </h2> */}
       </Link>

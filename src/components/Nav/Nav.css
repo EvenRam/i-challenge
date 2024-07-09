@@ -5,7 +5,7 @@
   align-items: center;
 
   margin: 0 0 30px;
-  background-color: #9ac8e2;
+  background-color: #3b81ab;
   overflow: hidden;
 
 }
@@ -15,21 +15,24 @@
 }
 
 .nav-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: #0c0b0b;
-  padding-left: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #eae6ec;
+  padding-left: 70px;
   margin: 0;
 }
 
 .navLink {
   display: inline-block;
   color: #efeef4;
-  background-color: #9acbe2;
+  background-color: #3b81ab;
   text-align: center;
   padding: 26px 50px;
   text-decoration: none;
   font-size: 20px;
+  font-weight: 700;
+
+
 
   /* these last two make the logout button in
   the nav bar look like another link */
